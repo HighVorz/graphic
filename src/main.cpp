@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include "include/wndbase.h"
 
-
 int default_nx = 800;
 int default_ny = 600;
-
 
 
 LRESULT CALLBACK
@@ -20,16 +18,19 @@ void initMain(WNDCLASS &wc, HINSTANCE hIns){
     wc.hIcon = NULL;
     wc.hInstance = hIns;
     wc.lpfnWndProc = WndProc;
-    wc.lpszClassName = _T("Main");  // must match the parameter when call CreateWindow()
+    wc.lpszClassName = _T("Painter");  // must match the parameter when call CreateWindow()
     wc.lpszMenuName = NULL;
     wc.style = CS_HREDRAW | CS_VREDRAW;
 
     // register wc in system
     RegisterClass(&wc);
 
+    // set menu
+    
+
     char addtion[] = "addtional information";
     // write window in memory
-    HWND hWnd = CreateWindowEx(0, _T("Main"), _T("window"), WS_OVERLAPPEDWINDOW,
+    HWND hWnd = CreateWindowEx(0, _T("Painter"), _T("Painter"), WS_OVERLAPPEDWINDOW,
                                100, 100, default_nx, default_ny, NULL, NULL, hIns, addtion);
 
     ShowWindow(hWnd, SW_SHOW);

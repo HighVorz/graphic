@@ -3,7 +3,6 @@
 
 #include <windows.h>
 
-
 struct Color3 {
     unsigned char r;
     unsigned char g;
@@ -15,14 +14,13 @@ struct Context {
 };
 
 
-
 class Canvas{
 public:
     int nx;
     int ny;
     int channel;
     BITMAPINFO bmi;
-    unsigned char *data;
+    unsigned char *bitmap;
 public:
     Canvas(int x, int y);  
 

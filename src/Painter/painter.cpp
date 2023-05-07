@@ -21,7 +21,7 @@ Painter::~Painter() {
 
 void
 Painter::drawDot(int x, int y, Color3 c) {
-    Color3* bitmap = (Color3*)cas->data;
+    Color3* bitmap = (Color3*)cas->bitmap;
     bitmap[x + y * cas->nx] = c;
 }
 
@@ -37,7 +37,7 @@ Painter::update() {
 
     StretchDIBits(hdc, 0, 0, cas->bmi.bmiHeader.biWidth,
 		cas->bmi.bmiHeader.biHeight, 0, 0, cas->bmi.bmiHeader.biWidth,
-		cas->bmi.bmiHeader.biHeight, cas->data, (BITMAPINFO*)&cas->bmi.bmiHeader,
+		cas->bmi.bmiHeader.biHeight, cas->bitmap, (BITMAPINFO*)&cas->bmi.bmiHeader,
 		DIB_RGB_COLORS, SRCCOPY);
 }
 
@@ -56,7 +56,7 @@ Canvas::Canvas(int x, int y) {
         bmi.bmiHeader.biCompression = BI_RGB;
         bmi.bmiHeader.biSizeImage = nx * ny * channel;
 
-        data = new unsigned char[nx * ny * channel];
-        memset(data, 255, nx * ny * channel);
+        bitmap = new unsigned char[nx * ny * channel];
+        memset(bitmap, 255, nx * ny * channel);
 
 }
