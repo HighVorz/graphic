@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #include "Painter/include/painter.h"
 #include "include/wndbase.h"
 
@@ -14,7 +15,12 @@ enum {
     ID_COLOR_GREEN,
 };
 
-Painter *p;
+int painter_num = 0;
+const int painter_maxnum = 10;
+
+Painter painter_mannager[painter_maxnum];
+Painter *cur_canvas;
+
 Color3 red = rgb(255, 0, 0);
 Color3 green = rgb(0, 255, 0);
 Color3 blue = rgb(0, 0, 255);
@@ -22,7 +28,7 @@ Color3 blue = rgb(0, 0, 255);
 Color3 *color = &red;
 
 void refresh(){
-    p->update();
+    cur_canvas->update();
 }
 
 void
@@ -33,17 +39,17 @@ test1(int x, int y) {
 
 void
 test2(int x, int y) {
-    p->drawDot(x, y, *color);
-    p->update();
+    cur_canvas->drawDot(x, y, *color);
+    cur_canvas->update();
 }
 
 void
 test3(int x, int y) {
     for (int i = 0; i < 600; i++) {
-        p->drawDot(2, i, *color);
-        p->drawDot(i, 50, *color);
+        cur_canvas->drawDot(2, i, *color);
+        cur_canvas->drawDot(i, 50, *color);
     }
-    p->update();
+    cur_canvas->update();
 }
 
 // message processor
@@ -51,8 +57,12 @@ LRESULT CALLBACK
 WndProc(HWND hWnd, UINT msgID, WPARAM wParam, LPARAM lParam) {
     switch (msgID) {
         case WM_CREATE:
-            p = new Painter(hWnd, 800, 600);
-
+            cur_canvas = new Painter(hWnd, 800, 600, "default");
+            // painter_mannager[0] = Painter(hWnd, 800, 600, "default");
+            // cur_canvas = &painter_mannager[0];
+            // painter_num++;
+            
+            
             //set menu
             HMENU hMenu, FileMenu, ColorMenu;
             hMenu = CreateMenu();

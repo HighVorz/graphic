@@ -14,7 +14,7 @@ struct Context {
 };
 
 
-class Canvas{
+class Bitmap{
 public:
     int nx;
     int ny;
@@ -22,7 +22,7 @@ public:
     BITMAPINFO bmi;
     unsigned char *bitmap;
 public:
-    Canvas(int x, int y);  
+    Bitmap(int x, int y);  
 
 };
 
@@ -33,9 +33,11 @@ private:
     int nx;
     int ny;
     Context cnt;
-    Canvas *cas;
+    Bitmap *cas;
+    char name[60];
 public:
-    Painter(HWND hWnd, int x, int y);
+    Painter(){};
+    Painter(HWND hWnd, int x, int y, const char* str);
     ~Painter();
     void drawDot(int x, int y, Color3 c);
     void drawLine();

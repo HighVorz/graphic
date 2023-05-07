@@ -3,12 +3,13 @@
 #include <omp.h>
 
 
-Painter::Painter(HWND hWnd, int x, int y) {
+Painter::Painter(HWND hWnd, int x, int y, const char* str) {
     cnt.hWnd = hWnd;
     nx = x;
     ny = y;
-    // cas = new Canvas((int)(dpi * x), (int)(dpi * y));
-    cas = new Canvas(x, y);
+    strcpy(name, str);
+    // cas = new Bitmap((int)(dpi * x), (int)(dpi * y));
+    cas = new Bitmap(x, y);
 }
 
 Painter::~Painter() {
@@ -41,7 +42,7 @@ Painter::update() {
 		DIB_RGB_COLORS, SRCCOPY);
 }
 
-Canvas::Canvas(int x, int y) {
+Bitmap::Bitmap(int x, int y) {
         nx = x;
         ny = y;
         channel = 3;
