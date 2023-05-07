@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <tchar.h>
-#include <windows.h>
-#include <iostream>
+#include "include/wndbase.h"
 
 
 int default_nx = 800;
 int default_ny = 600;
+
+
 
 LRESULT CALLBACK
 WndProc(HWND hWnd, UINT msgID, WPARAM wParam, LPARAM lParam);

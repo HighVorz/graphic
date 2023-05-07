@@ -15,10 +15,14 @@ Painter::~Painter() {
     delete cas;
 }
 
+
+//get specific message, and process it 
+
+
 void
 Painter::drawDot(int x, int y, Color3 c) {
     Color3* bitmap = (Color3*)cas->data;
-    bitmap[x * cas->nx + y] = c;
+    bitmap[x + y * cas->nx] = c;
 }
 
 void
