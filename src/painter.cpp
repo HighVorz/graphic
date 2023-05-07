@@ -1,4 +1,4 @@
-#include "painter.h"
+#include "include/painter.h"
 #include <stdio.h>
 #include <omp.h>
 

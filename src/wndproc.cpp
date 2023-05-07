@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
-#include "painter.h"
+#include "include/painter.h"
 
 void
 paint(HWND hWnd) { 
