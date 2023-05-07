@@ -3,6 +3,13 @@
 
 #include <windows.h>
 
+
+struct Color3 {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+};
+
 struct Context {
     HWND hWnd;
 };
@@ -11,45 +18,28 @@ struct Context {
 
 class Canvas{
 public:
-    int x;
-    int y;
-    COLORREF **color;
+    int nx;
+    int ny;
+    int channel;
+    BITMAPINFO bmi;
+    unsigned char *data;
 public:
-    Canvas(int x, int y){
-        this->x = x;
-        this->y = y;
-        color = (COLORREF**)new COLORREF*[x];
-        for(int i=0; i<y; i++){
-            color[i] = (COLORREF*)new COLORREF[y];
-        }
+    Canvas(int x, int y);  
 
-        for(int i=0; i<x; i++){
-            for(int j=0; j<y; j++){
-                color[i][j] = RGB(255, 255, 255);
-            }
-        }
-    }  
-
-    ~Canvas(){
-        for(int i=0; i<y; i++){
-            delete [] color[i];
-        }
-        delete [] color;
-    }
 };
 
 
 class
 Painter {
 private:
-    int x;
-    int y;
+    int nx;
+    int ny;
     Context cnt;
     Canvas *cas;
 public:
     Painter(HWND hWnd, int x, int y);
     ~Painter();
-    void drawDot(int x, int y, COLORREF c);
+    void drawDot(int x, int y, Color3 c);
     void drawLine();
     void update();
 };
