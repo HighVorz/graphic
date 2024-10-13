@@ -1,3 +1,7 @@
+#### Graphic
+Start to my code training.
+
+
 #### Introduction
 This is a refactored version.
 
